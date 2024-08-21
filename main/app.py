@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
@@ -6,20 +6,37 @@ zipDict = {}
 
 def makeZipDict(filename):
     global zipDict
-    with open (file, 'r') as file:
+    with open(filename, 'r') as file:
         for line in file:
             parts = line.strip().split(',')
             key = parts[0]
-            value = (int(parts[1].strip()), parts[2].strip())
+            print("Latitude:", parts[1].strip())  # Debugging line
+            print("Longitude:", parts[2].strip())  # Debugging line
+            value = (float(parts[1].strip()), float(parts[2].strip()))  # Latitude and Longitude
             zipDict[key] = value
 
-filename = zip-lat-lng.txt
+
+filename = 'zip-lat-lng.txt'
 makeZipDict(filename)
 
 @app.route('/')
 def index():
     print("Index route was accessed.")
     return render_template('index.html')
+
+@app.route('/ziptocoords', methods=['POST'])
+def ziptocoords():
+    data = request.get_json()  # Get JSON data from request
+    zip_code = data.get('zip_code')
+    if zip_code:
+        coords = zipDict.get(zip_code)
+        if coords:
+            return jsonify({"latitude": coords[0], "longitude": coords[1]})
+        else:
+            return jsonify({"error": "ZIP code not found"}), 404
+    else:
+        return jsonify({"error": "ZIP code not provided"}), 400
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5996)
