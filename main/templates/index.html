@@ -17,6 +17,7 @@
         color: white;
       }
       .form-inline {
+            margin-top: 1rem;
             display: flex;
             align-items: center; /* Align items vertically centered */
             gap: 1rem; /* Space between the label and select */
@@ -70,22 +71,20 @@
       <label class="form-inline" for="inlineFormObjectName">Object:</label>
       <input type="text" class="mx-auto" id="inlineFormObjectName" placeholder="Arcturus" style="width: 200px;">
     </div>
-    <div class="container mt-4">
-      <div class="col-md-6">
-        <form-inline id="zipForm">
-          <div class="mb-3">
-            <div class="form">
-              <label for="inlineFormLatitude" class="mr-2">Latitude:</label>
-              <input type="text" class="mx-auto" id="inlineFormLatitude" placeholder="or zipcode" style="width: 200px;">
-            </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <div class="form-inline">
+            <label for="inlineFormLatitude" class="mr-2">Latitude:</label>
+            <input type="text" class="mx-auto" id="inlineFormLatitude" placeholder="or zipcode" style="width: 200px;">
           </div>
-          <div class="mb-3">
-            <div class="form">
-              <label for="inlineFormLongitude" class="mr-2">Longitude:</label>
-              <input type="text" class="mx-auto" id="inlineFormLongitude" placeholder="or zipcode" style="width: 200px;">
-            </div>
+        </div>
+        <div class="col-auto">
+          <div class="form-inline">
+            <label for="inlineFormLongitude" class="mr-2">Longitude:</label>
+            <input type="text" class="mx-auto" id="inlineFormLongitude" placeholder="or zipcode" style="width: 200px;">
           </div>
-        </form>
+        </div>
       </div>
     </div>
     <div class="container mt-4">
