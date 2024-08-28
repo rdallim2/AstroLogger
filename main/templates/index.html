@@ -54,11 +54,14 @@
       #img-view{
         width: 100%;
         height: 100%;
+        background-position: center;
+        background-size: cover;
       }
       #img-view img {
         width: 30%;
         height: auto;
       }
+
       
   </style>
   
@@ -250,6 +253,26 @@
       const dropArea = document.getElementById("drop-area");
       const inputFile = document.getElementById("input-file");
       const imageView = document.getElementById("img-view");
+
+      inputFile.addEventListener("change", uploadImage);
+
+      function uploadImage(){
+        inputFile.files[0];
+        let imgLink = URL.createObjectURL(inputFile.files[0]);
+        imageView.style.backgroundImage = `url(${imgLink})`;
+        imageView.textContent = "";
+        imageView.style.border = 0;
+      }
+
+      dropArea.addEventListener("dragover", function(e){
+        e.preventDefault();
+      });
+      dropArea.addEventListener("drop", function(e){
+        e.preventDefault();
+        inputFile.files = e.dataTransfer.files;
+        uploadImage();
+      });
+
 
         function fetchCoordinates(zipCode) {
           $.ajax({
