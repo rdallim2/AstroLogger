@@ -35,6 +35,30 @@
             max-width: 500px; /* Set a maximum width for the textarea container */
             margin: 0 auto; /* Center the container horizontally */
         }
+
+      .imgUpload{
+        width: 100%;
+        min-height: 50vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #drop-area{
+        width: 500px;
+        height: 300px;
+        padding: 30px;
+        background: #1f3041;
+        text-align: center;
+        border-radius: 20px;
+      }
+      #img-view{
+        width: 100%;
+        height: 100%;
+      }
+      #img-view img {
+        width: 30%;
+        height: auto;
+      }
       
   </style>
   
@@ -185,7 +209,7 @@
     </div>
   </div>
 
-  <h3> Placeholder: Drag and drop image will go here</h3>
+  <h6> Placeholder: Drag and drop image will go here</h6>
 
   <div class="container text-center">
     <h4>Imaging Observations</h4>
@@ -205,10 +229,28 @@
     </div>
   </div>
 
+  <div class="imgUpload">
+    <label for="input-file" id="drop-area">
+      <input type="file" accept="image/*" id="input-file" hidden>
+        <div id="img-view">
+          <img src="upload.png">
+          <p>Drag and drop or click here<br> to upload an image.</p>
+          <span>Upload any images from desktop</span>
+        </div>
+    </label>
+  </div>
+
   <h5> Placeholder: Drag and drop image will go here</h5>
+
+  <button type="button" class="btn btn-primary btn-lg">Submit</button>
   
 
     <script type="text/javascript">
+
+      const dropArea = document.getElementById("drop-area");
+      const inputFile = document.getElementById("input-file");
+      const imageView = document.getElementById("img-view");
+
         function fetchCoordinates(zipCode) {
           $.ajax({
             url : '/ziptocoords',
