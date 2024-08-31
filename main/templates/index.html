@@ -1,86 +1,6 @@
-<!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-      <title>AstroLogger</title>
-    </head>
-  <style>
-      body {
-            font-family: 'Consolas', monospace;
-            background-color : #204060;
-            color: white;
-        }
-      h1 {
-        color: white;
-      }
-      .form-inline {
-            margin-top: 1rem;
-            display: flex;
-            align-items: center; /* Align items vertically centered */
-            gap: 1rem; /* Space between the label and select */
-      }
-      .form-select {
-          padding-bottom: .25rem; /* Padding below the select element */
-          margin-top: 2rem; /* where text sits in comparison to dropdown */
-          margin-bottom: 1rem;
-          flex: 1;
-      }
-      .form-control {
-        width: 100%;
-      }
-      .textarea-container {
-            max-width: 500px; /* Set a maximum width for the textarea container */
-            margin: 0 auto; /* Center the container horizontally */
-        }
+{% extends "base.html" %} 
 
-      .imgUpload{
-        width: 100%;
-        min-height: 50vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      #drop-area{
-        width: 500px;
-        height: 300px;
-        padding: 30px;
-        background: #1f3041;
-        text-align: center;
-        border-radius: 20px;
-      }
-      #img-view{
-        width: 100%;
-        height: 100%;
-        background-position: center;
-        background-size: cover;
-      }
-      #img-view img {
-        width: 30%;
-        height: auto;
-      }
-
-      
-  </style>
-  
-  <body>
-    <div class="container text-center">
-      <h1>AstroLogger</h1>
-      <div class="row">
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-primary btn-lg active"  >Make a Submission</button>
-            </div>
-            <div class="col">
-              <button type="button" class="btn btn-primary btn-lg disabled">View past logs   </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+{% block content %} 
 
     <div class="container-fluid">
       <div class="row">
@@ -189,7 +109,7 @@
   </div>
 
   <div class="container text-center">
-    <h2>Visual Observations</h2>
+    <h4>Visual Observations</h4>
     <div class="row justify-content-center">
       <div class="col-auto">
         <div class="form-inline">
@@ -205,14 +125,23 @@
       </div>
       <div class="col-auto">
         <div class="form-inline">
-          <label for="inlineFormPower" class="mr-2">Power/Maagnification:</label>
+          <label for="inlineFormPower" class="mr-2">Power/Magnification:</label>
           <input type="text" class="mx-auto" id="inlineFormPower" placeholder="" style="width: 200px;">
         </div>
       </div>
     </div>
   </div>
 
-  <h6> Placeholder: Drag and drop image will go here</h6>
+  <div class="imgUpload">
+    <label for="input-file" id="drop-area">
+      <input type="file" accept="image/*" id="input-file" hidden>
+        <div id="img-view">
+          <img src="upload.png">
+          <p>Drag and drop or click here<br> to upload an image.</p>
+          <span>Upload any images from desktop</span>
+        </div>
+    </label>
+  </div>
 
   <div class="container text-center">
     <h4>Imaging Observations</h4>
@@ -243,9 +172,15 @@
     </label>
   </div>
 
-  <h5> Placeholder: Drag and drop image will go here</h5>
+  <div class="container">
+    <div class="row justify-content-center align-self-center w-100">
+      <div class="col">
+        <button type="button" class="btn btn-primary btn-lg">Submit</button>       
+      </div>
+    </div>
+  </div>
 
-  <button type="button" class="btn btn-primary btn-lg">Submit</button>
+  {% endblock %}
   
 
     <script type="text/javascript">

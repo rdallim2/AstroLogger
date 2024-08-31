@@ -10,8 +10,6 @@ def makeZipDict(filename):
         for line in file:
             parts = line.strip().split(',')
             key = parts[0]
-            print("Latitude:", parts[1].strip())  # Debugging line
-            print("Longitude:", parts[2].strip())  # Debugging line
             value = (float(parts[1].strip()), float(parts[2].strip()))  # Latitude and Longitude
             zipDict[key] = value
 
@@ -23,6 +21,13 @@ makeZipDict(filename)
 def index():
     print("Index route was accessed.")
     return render_template('index.html')
+
+#@app.route('/login')
+#def login():
+
+#def createAccount():
+    
+
 
 @app.route('/ziptocoords', methods=['POST'])
 def ziptocoords():
