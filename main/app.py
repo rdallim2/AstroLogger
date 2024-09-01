@@ -2,6 +2,8 @@ from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
+#Routes
+from user import routes 
 zipDict = {}
 
 def makeZipDict(filename):
@@ -22,12 +24,10 @@ def index():
     print("Index route was accessed.")
     return render_template('index.html')
 
-#@app.route('/login')
-#def login():
-
-#def createAccount():
-    
-
+@app.route('/login')
+def login():
+    print("login route was accessed.")
+    return render_template('login.html')
 
 @app.route('/ziptocoords', methods=['POST'])
 def ziptocoords():
