@@ -24,10 +24,11 @@ def index():
     print("Index route was accessed.")
     return render_template('index.html')
 
-@app.route('/login')
-def login():
-    print("login route was accessed.")
-    return render_template('login.html')
+@app.route('/user/signup', methods=['GET'])
+def signup():
+    print("signup route was accessed.")
+    return render_template('signup.html')
+    return User().signup() #creating new class instance
 
 @app.route('/ziptocoords', methods=['POST'])
 def ziptocoords():

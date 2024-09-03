@@ -22,6 +22,7 @@ dropArea.addEventListener("drop", function(e){
 });
 
 
+
   function fetchCoordinates(zipCode) {
     $.ajax({
       url : '/ziptocoords',
