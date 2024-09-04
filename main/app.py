@@ -1,6 +1,11 @@
 from flask import Flask, render_template, jsonify, request
+import pymongo
 
 app = Flask(__name__)
+
+#Database config
+client = pymongo.MongoClient('localhost', 27017)
+db = client.user_login_system
 
 #Routes
 from user import routes 
@@ -24,11 +29,7 @@ def index():
     print("Index route was accessed.")
     return render_template('index.html')
 
-@app.route('/user/signup', methods=['GET'])
-def signup():
-    print("signup route was accessed.")
-    return render_template('signup.html')
-    return User().signup() #creating new class instance
+
 
 @app.route('/ziptocoords', methods=['POST'])
 def ziptocoords():

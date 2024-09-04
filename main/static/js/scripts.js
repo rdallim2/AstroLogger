@@ -13,6 +13,7 @@ $("form[name=signup_form").submit(function(e){
         },
         error: function(resp){
             console.log(resp)
+            $error.text(resp.responseJSON.error).removeClass("error-hidden"); //get error message from models.py and remove hidden feature from html
         }
     });
 
