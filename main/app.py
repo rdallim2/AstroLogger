@@ -2,10 +2,22 @@ from flask import Flask, render_template, jsonify, request
 import pymongo
 
 app = Flask(__name__)
+app.secret_key = b'\xd4\xfa\x82\xe3\x04\xd2\xd7\x08\xf8\xbck\xad\x0c\xb2\xad\xac'
 
 #Database config
 client = pymongo.MongoClient('localhost', 27017)
 db = client.user_login_system
+
+#Decorators
+def login_required(f):
+    @wraps(f)
+    def wrap(*arg, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect('/')
+
+    return wrap
 
 #Routes
 from user import routes 
@@ -27,7 +39,7 @@ makeZipDict(filename)
 @app.route('/')
 def index():
     print("Index route was accessed.")
-    return render_template('index.html')
+    return render_template('myLogs.html')
 
 
 

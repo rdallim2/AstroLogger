@@ -10,6 +10,7 @@ $("form[name=signup_form").submit(function(e){
         dataType: "json", 
         success: function(resp) {
             console.log(resp);
+            window.location.href = "/"; //redirect to main page after account created
         },
         error: function(resp){
             console.log(resp)

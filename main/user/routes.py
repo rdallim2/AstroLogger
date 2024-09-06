@@ -13,5 +13,9 @@ def signup():
         print("Rendering signup form.")
         return render_template('signup.html')
 
+@app.route('/user/signout')
+def signout():
+    return User().signout()
+
 
 
