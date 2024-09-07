@@ -40,19 +40,19 @@ makeZipDict(filename)
 @app.route('/')
 def home():
     print("signup route was accessed.")
-    return render_template('signup.html')
+    return render_template('signup.html', active_button='login')
 
 @app.route('/submission')
 @login_required
 def index(): 
     print("submission route was accessed.")
-    return render_template('index.html')
+    return render_template('index.html', active_button='submission')
 
 @app.route('/myLogs')
 @login_required
 def myLogs():
     print ("myLogs route was accessed.")
-    return render_template('myLogs.html')
+    return render_template('myLogs.html', active_button='logs')
 
 
 

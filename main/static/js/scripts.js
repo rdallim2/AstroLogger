@@ -1,3 +1,15 @@
+document.getElementById('view-past-logs-btn').addEventListener('click', function() {
+    window.location.href = '/myLogs'; // Redirects to the specified URL
+  });
+
+document.getElementById('submission-btn').addEventListener('click', function() {
+    window.location.href = '/submission'; // Redirects to the specified URL
+    });
+
+document.getElementById('login-btn').addEventListener('click', function() {
+    window.location.href = '/'; // Redirects to the specified URL
+    });
+
 $("form[name=signup_form").submit(function(e){
     var $form = $(this);
     var $error = $form.find(".error");

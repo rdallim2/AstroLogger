@@ -14,13 +14,13 @@
             <h1>AstroLogger</h1>
             <div class="row">
                 <div class="col">
-                    <button type="button" class="btn btn-primary btn-lg active"  >Make a Submission</button>
+                    <a href="/submission" class="btn btn-primary btn-lg {% if active_button == 'submission' %}active{% endif %}">Make a Submission</a>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-primary btn-lg">Login/Sign-up</button>
+                    <a href="/" class="btn btn-primary btn-lg {% if active_button == 'login' %}active{% endif %}">Login/Sign-up</a>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-primary btn-lg disabled">View Past Logs</button>
+                    <a href="/myLogs" class="btn btn-primary btn-lg {% if active_button == 'logs' %}active{% endif %}">View Past Logs</a>
                 </div>
             </div>
           </div>
