@@ -2,6 +2,34 @@
 
 {% block content %} 
 
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="card-wrapper">
+                    <div class="card h-100"> 
+                        <h2 class="text-center">Dashboard</h2>
+                        <p class="center">You are currently logged in</p>
+
+                        <div class="center">
+                            <a href="/user/signout" class="btn btn-primary btn-sm">Sign Out</a>
+                        </div>
+                    </div>
+                    <div class="card h-100">
+                        <h2 class="text-center">Your Info</h2>
+                        <div>
+                            <strong>ID:</strong> {{ session['user']['_id'] }}
+                        </div>
+                        <div>
+                            <strong>Name:</strong> {{ session['user']['name'] }}
+                        </div>
+                        <div>
+                            <strong>Email:</strong> {{ session['user']['email'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 {{ session['logged_in']}}
 {{ session['user'] }}
 

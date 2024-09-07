@@ -1,4 +1,5 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, session, redirect
+from functools import wraps
 import pymongo
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ db = client.user_login_system
 #Decorators
 def login_required(f):
     @wraps(f)
-    def wrap(*arg, **kwargs):
+    def wrap(*args, **kwargs):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
@@ -37,9 +38,22 @@ filename = 'zip-lat-lng.txt'
 makeZipDict(filename)
 
 @app.route('/')
-def index():
-    print("Index route was accessed.")
+def home():
+    print("signup route was accessed.")
+    return render_template('signup.html')
+
+@app.route('/submission')
+@login_required
+def index(): 
+    print("submission route was accessed.")
+    return render_template('index.html')
+
+@app.route('/myLogs')
+@login_required
+def myLogs():
+    print ("myLogs route was accessed.")
     return render_template('myLogs.html')
+
 
 
 

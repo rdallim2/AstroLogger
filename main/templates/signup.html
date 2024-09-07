@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="card-wrapper">
-                <div class="card"> 
+                <div class="card h-100"> 
                     <h2 class="text-center">Create an Account</h2>
                     <form name="signup_form">
                         <div class="row justify-content-center">
@@ -45,8 +45,41 @@
                         </div>
                     </form>
                 </div>
+                <div class="card h-100">
+                    <h2 class="text-center">Sign into your account</h2>
+                    <form name="login_form">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <label for="email" class="col-sm-5 col-form-label text-right">Email</label>
+                                    <div class="col-sm-7">
+                                        <input type="email" name="email" class="field" required>                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <label for="password" class="col-sm-5 col-form-label text-right">Password</label>
+                                    <div class="col-sm-7">
+                                        <input type="password" name="password" class="field" required>                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="error error--hidden"></p>
+                        <div class="row justify-content-center">
+                            <div class="col-auto">
+                                <input type="submit" value="Log in" class="btn btn-primary btn-sm">                                             
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    
 
 {% endblock %}
