@@ -11,7 +11,7 @@ class User:
         return jsonify(user), 200
 
     def signup(self):
-        print(request.form)
+        print("Form Data:", request.form)
 
         #Create the user object
         user = {
@@ -29,11 +29,11 @@ class User:
             return jsonify({ "error": "Email address already in use."}), 400
         print("sending to db")
 
-        if db.users.insert_one(user):
+        result = db.users.insert_one(user)
+        if result.inserted_id:
             return self.start_session(user)
-            #return jsonify(user), 200
-
-        return jsonify({ "error": "Signup failed" }), 400
+        else:
+            return jsonify({ "error": "Signup failed" }), 400
 
     def signout(self):
         session.clear()

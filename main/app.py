@@ -8,6 +8,8 @@ app.secret_key = b'\xd4\xfa\x82\xe3\x04\xd2\xd7\x08\xf8\xbck\xad\x0c\xb2\xad\xac
 #Database config
 client = pymongo.MongoClient('localhost', 27017)
 db = client.user_login_system
+client.admin.command('ping')
+print("MongoDB connection successful.")
 
 #Decorators
 def login_required(f):

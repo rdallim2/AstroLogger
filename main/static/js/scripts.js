@@ -10,7 +10,7 @@ document.getElementById('login-btn').addEventListener('click', function() {
     window.location.href = '/'; // Redirects to the specified URL
     });
 
-$("form[name=signup_form").submit(function(e){
+$("form[name=signup_form]").submit(function(e){
     var $form = $(this);
     var $error = $form.find(".error");
     var data = $form.serialize(); //bundles data objects from form to send to backend
@@ -33,7 +33,7 @@ $("form[name=signup_form").submit(function(e){
     e.preventDefault();
 });
 
-$("form[name=login_form").submit(function(e){
+$("form[name=login_form]").submit(function(e){
     var $form = $(this);
     var $error = $form.find(".error");
     var data = $form.serialize(); //bundles data objects from form to send to backend

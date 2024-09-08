@@ -6,7 +6,7 @@
             <div class="card-wrapper">
                 <div class="card h-100"> 
                     <h2 class="text-center">Create an Account</h2>
-                    <form name="signup_form">
+                    <form name="signup_form" method="POST" action="/user/signup">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
                                 <div class="form-group row">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="card h-100">
                     <h2 class="text-center">Sign into your account</h2>
-                    <form name="login_form">
+                    <form name="login_form" method="POST" action="/user/login">
                         <div class="row justify-content-center">
                             <div class="col-md-8">
                                 <div class="form-group row">
