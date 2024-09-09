@@ -1,13 +1,11 @@
 {% extends "base.html" %} 
-
 {% block content %} 
 
-
-
+  <form action="/submit_data" method="POST" enctype="multipart/form-data">
     <div class="container-fluid">
       <div class="row">
         <div class="form-inline mx-auto" style="width: 50%;">
-          <label class="form-inline" for="inlineFormObjectName">Observation Program:</label>
+          <label class="form-inline" for="inlineFormObjectName" name="inlineFormObjectName" >Observation Program:</label>
             <select class="form-select mx-auto" aria-label="Default select example">
               <option value="empty" selected ></option>
               <option value="1">Constellation Hunter- Northern</option>
@@ -25,7 +23,7 @@
       <div class="row">
         <div class="form-inline mx-auto" style="width: 25%;">
           <label for="inlineFormObjectName">Object:</label>
-          <input type="text" class="mx-auto" id="inlineFormObjectName" placeholder="Arcturus" style="width: 200px;">
+          <input type="text" class="mx-auto" id="inlineFormObjectName" name="inlineFormObjectName" placeholder="Arcturus" style="width: 200px;">
         </div>
       </div>
     </div>
@@ -35,13 +33,13 @@
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormLatitude" class="mr-2">Latitude:</label>
-            <input type="text" class="mx-auto" id="inlineFormLatitude" placeholder="or zipcode" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFormLatitude" name="inlineFormLatitude" placeholder="or zipcode" style="width: 200px;">
           </div>
         </div>
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormLongitude" class="mr-2">Longitude:</label>
-            <input type="text" class="mx-auto" id="inlineFormLongitude" placeholder="or zipcode" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFormLongitude" name="inlineFormLongitude" placeholder="or zipcode" style="width: 200px;">
           </div>
         </div>
       </div>
@@ -53,13 +51,13 @@
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormDate" class="mr-2">Date:</label>
-            <input type="text" class="mx-auto" id="inlineFormDate" placeholder="00/00/00" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFormDate" name="inlineFormDate" placeholder="00/00/00" style="width: 200px;">
           </div>
         </div>
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormTime" class="mr-2">Time:</label>
-            <input type="text" class="mx-auto" id="inlineFormTime" placeholder="00:00:00" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFormTime" name="inlineFormTime" name="inlineFormTime"placeholder="00:00:00" style="width: 200px;">
           </div>
         </div>
       </div>
@@ -70,13 +68,13 @@
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormSeeing" class="mr-2">Seeing:</label>
-            <input type="text" class="mx-auto" id="inlineFromSeeing" placeholder="16mm 2.5x" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFromSeeing" name="inlineFromSeeing" placeholder="16mm 2.5x" style="width: 200px;">
           </div>
         </div>
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormTransparency" class="mr-2">Transparency:</label>
-            <input type="text" class="mx-auto" id="inlineFormTransparency" placeholder="4" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFormTransparency" name="inlineFormTransparency" placeholder="4" style="width: 200px;">
           </div>
         </div>
       </div>
@@ -87,13 +85,13 @@
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormSize" class="mr-2">Size of instrument:</label>
-            <input type="text" class="mx-auto" id="inlineFromSize" placeholder="5.5 inch" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFromSize" name="inlineFromSize" placeholder="5.5 inch" style="width: 200px;">
           </div>
         </div>
         <div class="col-auto">
           <div class="form-inline">
             <label for="inlineFormFilters" class="mr-2">Filters used:</label>
-            <input type="text" class="mx-auto" id="inlineFormFilters" placeholder="4" style="width: 200px;">
+            <input type="text" class="mx-auto" id="inlineFormFilters" name="inlineFormFilters" placeholder="4" style="width: 200px;">
           </div>
         </div>
       </div>
@@ -104,83 +102,84 @@
           <div class="col">
               <div class="form-group textarea-container">
                   <label for="exampleTextarea">Object description:</label>
-                  <textarea class="form-control" id="exampleTextarea" rows="6" placeholder="Tonight the object appeared..."></textarea>
+                  <textarea class="form-control" id="exampleTextarea" name="exampleTextarea" rows="6" placeholder="Tonight the object appeared..."></textarea>
               </div>
           </div>
       </div>
-  </div>
+    </div>
 
-  <div class="container text-center">
-    <h4>Visual Observations</h4>
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        <div class="form-inline">
-          <label for="inlineFormSeeing" class="mr-2">Seeing:</label>
-          <input type="text" class="mx-auto" id="inlineFromSeeing" placeholder="" style="width: 200px;">
+    <div class="container text-center">
+      <h4>Visual Observations</h4>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <div class="form-inline">
+            <label for="inlineFormSeeing" class="mr-2">Seeing:</label>
+            <input type="text" class="mx-auto" id="inlineFromSeeing" name="inlineFromSeeing" placeholder="" style="width: 200px;">
+          </div>
         </div>
-      </div>
-      <div class="col-auto">
-        <div class="form-inline">
-          <label for="inlineFormTransparency" class="mr-2">Transparency:</label>
-          <input type="text" class="mx-auto" id="inlineFormTransparency" placeholder="" style="width: 200px;">
+        <div class="col-auto">
+          <div class="form-inline">
+            <label for="inlineFormTransparency" class="mr-2">Transparency:</label>
+            <input type="text" class="mx-auto" id="inlineFormTransparency" name="inlineFormTransparency" placeholder="" style="width: 200px;">
+          </div>
         </div>
-      </div>
-      <div class="col-auto">
-        <div class="form-inline">
-          <label for="inlineFormPower" class="mr-2">Power/Magnification:</label>
-          <input type="text" class="mx-auto" id="inlineFormPower" placeholder="" style="width: 200px;">
+        <div class="col-auto">
+          <div class="form-inline">
+            <label for="inlineFormPower" class="mr-2">Power/Magnification:</label>
+            <input type="text" class="mx-auto" id="inlineFormPower" name="inlineFormPower" placeholder="" style="width: 200px;">
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="imgUpload">
-    <label for="input-file" id="drop-area">
-      <input type="file" accept="image/*" id="input-file" hidden>
-        <div id="img-view">
-          <img src="{{ url_for('static', filename='images/upload.png') }}" alt="Upload">
-          <p>Drag and drop or click here<br> to upload an image.</p>
-          <span>Upload any images from desktop</span>
-        </div>
-    </label>
-  </div>
+    <div class="imgUpload">
+      <label for="input-file" id="drop-area">
+        <input type="file" accept="image/*" id="input-file" name="input-file" namehidden>
+          <div id="img-view">
+            <img src="{{ url_for('static', filename='images/upload.png') }}" alt="Upload">
+            <p>Drag and drop or click here<br> to upload an image.</p>
+            <span>Upload any images from desktop</span>
+          </div>
+      </label>
+    </div>
 
-  <div class="container text-center">
-    <h4>Imaging Observations</h4>
-    <div class="row justify-content-center">
-      <div class="col-auto">
-        <div class="form-inline">
-          <label for="inlineFormCamera" class="mr-2">Camera used:</label>
-          <input type="text" class="mx-auto" id="inlineFromCamera" placeholder="" style="width: 200px;">
+    <div class="container text-center">
+      <h4>Imaging Observations</h4>
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <div class="form-inline">
+            <label for="inlineFormCamera" class="mr-2">Camera used:</label>
+            <input type="text" class="mx-auto" id="inlineFromCamera" name="inlineFromCamera" placeholder="" style="width: 200px;">
+          </div>
         </div>
-      </div>
-      <div class="col-auto">
-        <div class="form-inline">
-          <label for="inlineFormDetails" class="mr-2">Image Details:</label>
-          <input type="text" class="mx-auto" id="inlineFormDetails" placeholder="" style="width: 200px;">
+        <div class="col-auto">
+          <div class="form-inline">
+            <label for="inlineFormDetails" class="mr-2">Image Details:</label>
+            <input type="text" class="mx-auto" id="inlineFormDetails" name="inlineFormDetails" placeholder="" style="width: 200px;">
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="imgUpload">
-    <label for="input-file" id="drop-area">
-      <input type="file" accept="image/*" id="input-file" hidden>
-        <div id="img-view">
-          <img src="{{ url_for('static', filename='images/upload.png') }}" alt="Upload">
-          <p>Drag and drop or click here<br> to upload an image.</p>
-          <span>Upload any images from desktop</span>
+    <div class="imgUpload">
+      <label for="input-file" id="drop-area">
+        <input type="file" accept="image/*" id="input-file" name="input-file" hidden>
+          <div id="img-view">
+            <img src="{{ url_for('static', filename='images/upload.png') }}" alt="Upload">
+            <p>Drag and drop or click here<br> to upload an image.</p>
+            <span>Upload any images from desktop</span>
+          </div>
+      </label>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center align-self-center">
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary btn-lg">Submit</button>      
         </div>
-    </label>
-  </div>
-
-  <div class="container">
-    <div class="row justify-content-center align-self-center">
-      <div class="col-auto">
-        <button type="button" class="btn btn-primary btn-lg">Submit</button>       
       </div>
     </div>
-  </div>
+  </form>
 
   {% endblock %}
   </body>

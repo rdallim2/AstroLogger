@@ -2,12 +2,14 @@ from flask import Flask, render_template, jsonify, request, session, redirect
 from functools import wraps
 import pymongo
 
+
 app = Flask(__name__)
 app.secret_key = b'\xd4\xfa\x82\xe3\x04\xd2\xd7\x08\xf8\xbck\xad\x0c\xb2\xad\xac'
 
 #Database config
 client = pymongo.MongoClient('localhost', 27017)
 db = client.user_login_system
+
 
 #Decorators
 def login_required(f):
@@ -53,6 +55,8 @@ def index():
 def myLogs():
     print ("myLogs route was accessed.")
     return render_template('myLogs.html')
+
+
 
 
 
