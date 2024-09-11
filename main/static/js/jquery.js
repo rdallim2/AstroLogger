@@ -5,11 +5,28 @@ const imageView = document.getElementById("img-view");
 inputFile.addEventListener("change", uploadImage);
 
 function uploadImage(){
-  inputFile.files[0];
+  const file = inputFile.files[0];
   let imgLink = URL.createObjectURL(inputFile.files[0]);
   imageView.style.backgroundImage = `url(${imgLink})`;
   imageView.textContent = "";
   imageView.style.border = 0;
+
+    // Send the image via FormData to the backend
+    const formData = new FormData();
+    formData.append("input-file", file);
+  
+    // Send formData via fetch API
+    fetch("/submit_data", {
+      method: "POST",
+      body: formData
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log("Image upload success:", result);
+    })
+    .catch(error => {
+      console.error("Error uploading image:", error);
+    });
 }
 
 dropArea.addEventListener("dragover", function(e){

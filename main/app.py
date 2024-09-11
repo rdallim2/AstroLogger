@@ -50,11 +50,6 @@ def index():
     print("submission route was accessed.")
     return render_template('index.html')
 
-@app.route('/myLogs')
-@login_required
-def myLogs():
-    print ("myLogs route was accessed.")
-    return render_template('myLogs.html')
 
 
 

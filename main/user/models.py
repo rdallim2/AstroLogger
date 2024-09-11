@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, session, redirect
+from flask import Flask, jsonify, request, session, redirect, render_template
 from passlib.hash import pbkdf2_sha256
 from app import db
 from bson import ObjectId
@@ -10,6 +10,7 @@ user_collection = db.users
 class User:
     def __init__(self, db):
         self.db = db
+
 
     def start_session(self, user):
         del user['password'] #don't want password saved in user object
@@ -75,12 +76,36 @@ class User:
            'description': request.form.get('description'),
            'power': request.form.get('power'),
         }
-        if 'image' in request.files:
-           image = request.files['input-file']
-           if image and image.filename:
-               filename = str(uuid.uuid4()) + '.' + image.filename.rsplit('.', 1)[1].lower()
-               file_id = fs.put(image, filename=filename)
-               data['image_file_id'] = str(file_id)
-        result = db.user_data.insert_one(data)
+        if 'input-file' in request.files:
+            image = request.files['input-file']
+            if image and image.filename:
+                print(f"Image uploaded: {image.filename}")
+                filename = request.files['input-file']
+                filename = str(uuid.uuid4()) + '.' + image.filename.rsplit('.', 1)[1].lower()
+                file_id = fs.put(image, filename=filename)
+                print(f"File ID: {file_id}")  # Log file ID
+                data['image_file_id'] = str(file_id)
+        else:
+            print("No image found in the request")
+        result = data_collection.insert_one(data)
         data['_id'] = str(result.inserted_id)
         return jsonify({"message": "Submission successful", "data": data}), 200
+
+    def retrieve_data(self):
+        data_collection = self.db['user_data'] 
+        logs = data_collection.find()
+
+        data = []
+
+        for doc in logs:
+            doc['_id'] = str(doc['_id'])  # Convert ObjectId to string
+            if 'image_file_id' in doc:
+                doc['image_file_id'] = str(doc['image_file_id']) 
+            data.append(doc)
+            
+
+        return render_template('myLogs.html', data=data)
+
+
+
+    #def retrieve_data(self):

@@ -29,6 +29,40 @@
             </div>
         </div>
 
+
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="card-wrapper">
+                    <div class="card h-100">
+                        <h2 class="text-center">Your Logs</h2>
+                        {% if data %} 
+                            <ul>
+                                {% for item in data %} 
+                                    <li>
+                                        <strong>Object Name:</strong> {{ item.objectName }}<br>
+                                        <strong>Latitude:</strong> {{ item.latitude }}<br>
+                                        <strong>Longitude:</strong> {{ item.longitude }}<br>
+                                        <strong>Date:</strong> {{ item.date }}<br>
+                                        <strong>Time:</strong> {{ item.time }}<br>
+                                        <strong>Description:</strong> {{ item.description }}<br>
+                                        <strong>Filters:</strong> {{ item.filters }}<br>
+                                        
+                                        <!-- Display image if available -->
+                                        {% if item.image_file_id %}
+                                            <img src="/image/{{ item.image_file_id }}" alt="Uploaded Image" width="200">
+                                        {% endif %}
+                                    </li>
+                                    <hr>
+                                {% endfor %} 
+                            </ul>
+                        {% else %} 
+                            <p> Data not found</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
 <!--
 {{ session['logged_in']}}
 {{ session['user'] }} 
