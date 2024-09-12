@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, Response
+import pymongo
 from bson.objectid import ObjectId
 from gridfs import GridFS
-from app import app, db #from app.py import app
+from app import app, db, login_required #from app.py import app
 from user.models import User #from user dir, models file, import User class 
 
 @app.route('/user/signup', methods=['POST'])
@@ -12,19 +13,20 @@ def signup():
 
 @app.route('/user/signout')
 def signout():
-    return User().signout()
+    return User(db).signout()
 
 @app.route('/user/login', methods=['POST'])
 def login():
-    return User().login()
+    return User(db).login()
 
 @app.route('/submit_data', methods=['POST'])
 def submit_data_route():
     user = User(db)
-    return user.submit_data()
+    return User(db).submit_data()
 
 
 @app.route('/myLogs')
+@login_required
 def retrieve_data_route():
     print ("myLogs route was accessed.")
     user = User(db)

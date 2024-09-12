@@ -4,7 +4,11 @@ from app import db
 from bson import ObjectId
 import uuid
 from gridfs import GridFS
+import pymongo
 
+
+client = pymongo.MongoClient('localhost', 27017)
+db = client.user_login_system
 user_collection = db.users
 
 class User:
@@ -15,6 +19,7 @@ class User:
     def start_session(self, user):
         del user['password'] #don't want password saved in user object
         session['logged_in'] = True
+        session['user_id'] = user['_id']
         session['user'] = user
         return jsonify(user), 200
 
@@ -63,18 +68,19 @@ class User:
         fs = GridFS(db)
 
         data = {
-           'observationProgram': request.form.get('observationProgram'),
-           'objectName': request.form.get('inlineFormObjectName'),
-           'latitude': request.form.get('inlineFormLatitude'),
-           'longitude': request.form.get('inlineFormLongitude'),
-           'date': request.form.get('inlineFormDate'),
-           'time': request.form.get('inlineFormTime'),
-           'seeing': request.form.get('inlineFormSeeing'),
-           'transparency': request.form.get('inlineFormTransparency'),
-           'size': request.form.get('inlineFormSize'),
-           'filters': request.form.get('inlineFormFilters'),
-           'description': request.form.get('description'),
-           'power': request.form.get('power'),
+            'user_id': session['user']['_id'],
+            'observationProgram': request.form.get('observationProgram'),
+            'objectName': request.form.get('inlineFormObjectName'),
+            'latitude': request.form.get('inlineFormLatitude'),
+            'longitude': request.form.get('inlineFormLongitude'),
+            'date': request.form.get('inlineFormDate'),
+            'time': request.form.get('inlineFormTime'),
+            'seeing': request.form.get('inlineFormSeeing'),
+            'transparency': request.form.get('inlineFormTransparency'),
+            'size': request.form.get('inlineFormSize'),
+            'filters': request.form.get('inlineFormFilters'),
+            'description': request.form.get('description'),
+            'power': request.form.get('power')
         }
         if 'input-file' in request.files:
             image = request.files['input-file']
@@ -102,7 +108,7 @@ class User:
             if 'image_file_id' in doc:
                 doc['image_file_id'] = str(doc['image_file_id']) 
             data.append(doc)
-            
+
 
         return render_template('myLogs.html', data=data)
 
