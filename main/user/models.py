@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, session, redirect, render_template
+from flask import Flask, jsonify, request, session, redirect, render_template, url_for
 from passlib.hash import pbkdf2_sha256
 from app import db
 from bson import ObjectId
@@ -82,20 +82,31 @@ class User:
             'description': request.form.get('description'),
             'power': request.form.get('power')
         }
-        if 'input-file' in request.files:
-            image = request.files['input-file']
+        if 'visual-input-file' in request.files:
+            image = request.files['visual-input-file']
             if image and image.filename:
                 print(f"Image uploaded: {image.filename}")
-                filename = request.files['input-file']
+                filename = request.files['visual-input-file']
                 filename = str(uuid.uuid4()) + '.' + image.filename.rsplit('.', 1)[1].lower()
                 file_id = fs.put(image, filename=filename)
                 print(f"File ID: {file_id}")  # Log file ID
-                data['image_file_id'] = str(file_id)
+                data['visual_image_file_id'] = str(file_id)
+        
+        if 'imaging-input-file' in request.files:
+            image = request.files['imaging-input-file']
+            if image and image.filename:
+                print(f"Image uploaded: {image.filename}")
+                filename = request.files['imaging-input-file']
+                filename = str(uuid.uuid4()) + '.' + image.filename.rsplit('.', 1)[1].lower()
+                file_id = fs.put(image, filename=filename)
+                print(f"File ID: {file_id}")  # Log file ID
+                data['imaging_image_file_id'] = str(file_id)
         else:
             print("No image found in the request")
         result = data_collection.insert_one(data)
         data['_id'] = str(result.inserted_id)
-        return jsonify({"message": "Submission successful", "data": data}), 200
+
+        return redirect(url_for('retrieve_data_route'))
 
     def retrieve_data(self):
         data_collection = self.db['user_data'] 

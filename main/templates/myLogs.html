@@ -7,9 +7,9 @@
                 <div class="card-wrapper">
                     <div class="card h-100"> 
                         <h2 class="text-center">Dashboard</h2>
-                        <p class="center">You are currently logged in</p>
+                        <p class="text-center">You are currently logged in</p>
 
-                        <div class="center">
+                        <div class="text-center">
                             <a href="/user/signout" class="btn btn-primary btn-sm">Sign Out</a>
                         </div>
                     </div>
@@ -36,28 +36,26 @@
                     <div class="card h-100">
                         <h2 class="text-center">Your Logs</h2>
                         {% if data %} 
-                            <ul>
+                            <ul style="list-style-type: disc;">
                                 {% for item in data %} 
-                                <strong>Item User ID:</strong> {{ item.user_id }}<br>
-                                <strong>Session User ID:</strong> {{ session['user_id'] }}<br>
-                                    <li>
                                         {% if item.user_id == session['user']['_id'] %}
-                                            <strong>User ID:</strong> {{ item.user_id }}<br>
-                                            <strong>Object Name:</strong> {{ item.objectName }}<br>
-                                            <strong>Latitude:</strong> {{ item.latitude }}<br>
-                                            <strong>Longitude:</strong> {{ item.longitude }}<br>
-                                            <strong>Date:</strong> {{ item.date }}<br>
-                                            <strong>Time:</strong> {{ item.time }}<br>
-                                            <strong>Description:</strong> {{ item.description }}<br>
-                                            <strong>Filters:</strong> {{ item.filters }}<br>
-                                            
-                                            <!-- Display image if available -->
-                                            {% if item.image_file_id %}
-                                                <img src="/image/{{ item.image_file_id }}" alt="Uploaded Image" width="200">
+                                                <li><strong>Object Name:</strong> {{ item.objectName }}<br></li>
+                                                <li><strong>Latitude:</strong> {{ item.latitude }}<br></li>
+                                                <li><strong>Longitude:</strong> {{ item.longitude }}<br></li>
+                                                <li><strong>Date:</strong> {{ item.date }}<br></li>
+                                                <li><strong>Time:</strong> {{ item.time }}<br></li>
+                                                <li><strong>Description:</strong> {{ item.description }}<br></li>
+                                                <li><strong>Filters:</strong> {{ item.filters }}<br></li>
+                                                
+                                                <!-- Display image if available -->
+                                                {% if item.visual_image_file_id %}
+                                                    <img src="/image/{{ item.visual_image_file_id }}" alt="Uploaded Image" width="200">
+                                                {% endif %}
+                                                {% if item.imaging_image_file_id %}
+                                                <img src="/image/{{ item.imaging_image_file_id }}" alt="Uploaded Image" width="200">
                                             {% endif %}
+                                            <hr>
                                         {% endif %}
-                                    </li>
-                                    <hr>
                                 {% endfor %} 
                             </ul>
                         {% else %} 

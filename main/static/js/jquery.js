@@ -1,12 +1,23 @@
-const dropArea = document.getElementById("drop-area");
-const inputFile = document.getElementById("input-file");
-const imageView = document.getElementById("img-view");
+const visualDropArea = document.getElementById("visual-drop-area");
+const visualInputFile = document.getElementById("visual-input-file");
+const visualImageView = document.getElementById("visual-img-view");
 
-inputFile.addEventListener("change", uploadImage);
+visualInputFile.addEventListener("change", function(){
+  uploadImage(visualInputFile, visualImageView);
+});
 
-function uploadImage(){
+const imagingDropArea = document.getElementById("imaging-drop-area");
+const imagingInputFile = document.getElementById("imaging-input-file");
+const imagingImageView = document.getElementById("imaging-img-view");
+
+imagingInputFile.addEventListener("change", function(){
+  uploadImage(imagingInputFile, imagingImageView);
+});
+
+
+function uploadImage(inputFile, imageView){
   const file = inputFile.files[0];
-  let imgLink = URL.createObjectURL(inputFile.files[0]);
+  let imgLink = URL.createObjectURL(file);
   imageView.style.backgroundImage = `url(${imgLink})`;
   imageView.textContent = "";
   imageView.style.border = 0;
@@ -20,7 +31,6 @@ function uploadImage(){
       method: "POST",
       body: formData
     })
-    .then(response => response.json())
     .then(result => {
       console.log("Image upload success:", result);
     })
@@ -29,10 +39,19 @@ function uploadImage(){
     });
 }
 
-dropArea.addEventListener("dragover", function(e){
+imagingDropArea.addEventListener("dragover", function(e){
   e.preventDefault();
 });
-dropArea.addEventListener("drop", function(e){
+imagingDropArea.addEventListener("drop", function(e){
+  e.preventDefault();
+  inputFile.files = e.dataTransfer.files;
+  uploadImage();
+});
+
+visualDropArea.addEventListener("dragover", function(e){
+  e.preventDefault();
+});
+visualDropArea.addEventListener("drop", function(e){
   e.preventDefault();
   inputFile.files = e.dataTransfer.files;
   uploadImage();

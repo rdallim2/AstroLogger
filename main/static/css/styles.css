@@ -40,7 +40,16 @@ h1 {
     justify-content: center;
 }
 
-#drop-area {
+#visual-drop-area {
+    width: 500px;
+    height: 300px;
+    padding: 30px;
+    background: #1f3041;
+    text-align: center;
+    border-radius: 20px;
+}
+
+#imaging-drop-area {
     width: 500px;
     height: 300px;
     padding: 30px;
@@ -77,14 +86,26 @@ h1 {
     margin-bottom: 1rem;
 }
 
-#img-view {
+#visual-img-view {
     width: 100%;
     height: 100%;
     background-position: center;
     background-size: cover;
 }
 
-#img-view img {
+#imaging-img-view {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+#visual-img-view img {
+    width: 30%;
+    height: auto;
+}
+
+#imaging-img-view img {
     width: 30%;
     height: auto;
 }
