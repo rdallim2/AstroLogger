@@ -7,9 +7,16 @@ from gridfs import GridFS
 import pymongo
 
 
-client = pymongo.MongoClient('localhost', 27017)
-db = client.user_login_system
-user_collection = db.users
+try:
+    client = pymongo.MongoClient("mongodb://mongodb:27017/")
+    db = client.user_login_system
+    user_collection = db.users
+    # Test if the connection is successful
+    client.admin.command('ping')  # Sends a ping command to test the connection
+    print("MongoDB connection successful")
+except ConnectionFailure as e:
+    print(f"MongoDB connection failed: {e}")
+
 
 class User:
     def __init__(self, db):

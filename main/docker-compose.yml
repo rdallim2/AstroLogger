@@ -3,4 +3,20 @@ services:
   flaskapp:
     build: .
     ports:
-      - "5996:5996"
+      - "5996:5000"
+    depends_on:
+      - mongodb  # Ensures that the flaskapp starts after mongodb is ready
+    networks:
+      - app-network  # Connect flaskapp to the same network as mongodb
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network  # Connect mongodb to the same network as flaskapp
+
+networks:
+  app-network:
+    driver: bridge  # Use the default bridge network

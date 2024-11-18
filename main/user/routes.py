@@ -9,7 +9,7 @@ from user.models import User #from user dir, models file, import User class
 def signup():
     # Handle the form submission, e.g., by calling the User class's signup method.
     print("Processing signup form submission.")
-    return User().signup()
+    return User(db).signup()
 
 @app.route('/user/signout')
 def signout():

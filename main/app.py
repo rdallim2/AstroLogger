@@ -1,14 +1,21 @@
 from flask import Flask, render_template, jsonify, request, session, redirect
 from functools import wraps
 import pymongo
+from pymongo.errors import ConnectionFailure
 
 
 app = Flask(__name__)
 app.secret_key = b'\xd4\xfa\x82\xe3\x04\xd2\xd7\x08\xf8\xbck\xad\x0c\xb2\xad\xac'
 
 #Database config
-client = pymongo.MongoClient('localhost', 27017)
-db = client.user_login_system
+try:
+    client = pymongo.MongoClient("mongodb://mongodb:27017/")
+    db = client.user_login_system
+    # Test if the connection is successful
+    client.admin.command('ping')  # Sends a ping command to test the connection
+    print("MongoDB connection successful")
+except ConnectionFailure as e:
+    print(f"MongoDB connection failed: {e}")
 
 
 #Decorators
